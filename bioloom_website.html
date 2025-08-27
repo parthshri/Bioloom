@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bioloom — Sustainable Packaging</title>
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --accent:#2dd4bf; --muted:#94a3b8; --glass: rgba(255,255,255,0.04);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; background:linear-gradient(180deg,#071021 0%, #081227 60%); color:#e6eef6;}
+
+    header{padding:40px 20px; display:flex; gap:20px; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto}
+    .brand{display:flex; gap:16px; align-items:center}
+    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#60a5fa);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;box-shadow:0 6px 18px rgba(45,212,191,0.08)}
+    h1{font-size:20px;margin:0}
+    p.lead{margin:0;color:var(--muted)}
+
+    .container{max-width:1100px;margin:20px auto;padding:24px}
+    .hero{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:16px;padding:28px;display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:center}
+    .hero-left h2{font-size:28px;margin:6px 0}
+    .badge{display:inline-block;background:var(--glass);padding:6px 10px;border-radius:999px;color:var(--accent);font-weight:600;margin-bottom:12px}
+    .cta-row{display:flex;gap:12px;margin-top:16px}
+    .btn{padding:12px 16px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#60a5fa);border:none;color:#022;cursor:pointer;font-weight:700;box-shadow:0 8px 30px rgba(96,165,250,0.08)}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent)}
+
+    .hero-right{display:flex;flex-direction:column;gap:12px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:12px;box-shadow: 0 6px 24px rgba(2,6,23,0.5)}
+
+    /* tabs */
+    .tabs{display:flex;gap:8px;margin-top:18px}
+    .tab{padding:10px 14px;border-radius:10px;cursor:pointer;background:transparent;border:1px solid transparent;color:var(--muted)}
+    .tab.active{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.03));border-color:rgba(255,255,255,0.03);color:#e6eef6}
+
+    .content{margin-top:18px}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+
+    .features-list{display:grid;gap:12px}
+    .feature{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02)}
+
+    table{width:100%;border-collapse:collapse;background:transparent}
+    th,td{padding:10px;text-align:left;border-bottom:1px dashed rgba(255,255,255,0.03)}
+    th{color:var(--muted);font-weight:600}
+
+    footer{max-width:1100px;margin:28px auto;padding:18px;border-radius:12px}
+
+    /* small screens */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .grid{grid-template-columns:1fr}
+      .hero-right{order:-1}
+    }
+
+    /* floating leaf animation */
+    .floating{position:relative}
+    .leaf{position:absolute;right:-20px;top:-20px;width:120px;height:120px;opacity:0.12;transform:rotate(-15deg);animation:float 6s ease-in-out infinite}
+    .leaf.two{right: -40px; top:80px; width:80px; animation-duration:8s}
+    @keyframes float{0%{transform:translateY(0) rotate(-10deg)}50%{transform:translateY(-14px) rotate(6deg)}100%{transform:translateY(0) rotate(-10deg)}}
+
+    /* subtle glow */
+    .glow{position:absolute;left:0;right:0;height:220px;top:-20px;filter:blur(40px);opacity:0.18}
+
+    /* animations */
+    .fade-in{animation:fade .7s ease both}
+    @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+    /* demo placeholder animation */
+    .pulse{animation:pulse 1.8s ease-in-out infinite}
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+
+    /* small helper */
+    .muted{color:var(--muted)}
+
+    /* little footer */
+    .contact-card{display:flex;flex-direction:column;gap:8px}
+    .contact-card a{color:var(--accent);text-decoration:none;font-weight:700}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">B🌿</div>
+      <div>
+        <h1>Bioloom — Sustainable Packaging</h1>
+        <p class="lead">Made from gelatin • Decomposes in 90 days • Replace single-use plastics</p>
+      </div>
+    </div>
+    <nav aria-label="Top">
+      <button class="tab active" onclick="openTab('about')">About</button>
+      <button class="tab" onclick="openTab('features')">Features</button>
+      <button class="tab" onclick="openTab('demo')">90 Days Demo</button>
+      <button class="tab" onclick="openTab('compare')">Compare</button>
+      <button class="tab" onclick="openTab('contact')">Contact</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <span class="badge">New • Biodegradable 🌱</span>
+        <h2>Bioloom — the green alternative to disposable plastics</h2>
+        <p class="muted">Strong, food-safe, water-resistant and made from natural gelatin. Bioloom looks and works like plastic — but it returns to the earth in roughly 90 days.</p>
+        <div class="cta-row">
+          <button class="btn" onclick="openTab('contact')">Collaborate 🤝</button>
+          <button class="btn ghost" onclick="openTab('demo')">See 90‑day demo</button>
+        </div>
+
+        <div style="margin-top:18px" class="tabs fade-in">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="card" style="display:flex;gap:12px;align-items:center;padding:10px;background:linear-gradient(90deg, rgba(45,212,191,0.06), rgba(96,165,250,0.02));">
+              <div style="font-size:20px">📦</div>
+              <div>
+                <div style="font-weight:700">Use Cases</div>
+                <div class="muted">Food wraps • Carry bags • Event disposables</div>
+              </div>
+            </div>
+            <div class="card" style="padding:10px;display:flex;gap:12px;align-items:center;">
+              <div style="font-size:20px">⚖️</div>
+              <div>
+                <div style="font-weight:700">Cost</div>
+                <div class="muted">Comparable to plastic at scale</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="card floating" style="overflow:hidden;position:relative;">
+          <svg class="leaf" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12C6 4 14 2 22 6C19 14 11 18 4 17C3.5 16.9 2.5 14.5 2 12Z" fill="white"/></svg>
+          <svg class="leaf two" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 12C18 20 10 22 2 18C5 10 13 6 20 7C20.5 8 23 11 22 12Z" fill="white"/></svg>
+
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="flex:1">
+              <div style="font-size:18px;font-weight:800">Biodegradation preview</div>
+              <div class="muted" style="font-size:13px">Placeholder demo — full 90‑day breakdown coming soon.</div>
+            </div>
+            <div style="width:86px;text-align:right">
+              <div style="font-size:24px;font-weight:800">90<span style="font-size:14px">d</span></div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <div style="height:12px;background:rgba(255,255,255,0.03);border-radius:999px;overflow:hidden">
+              <div id="decayBar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--accent),#60a5fa);transition:width 1.2s ease"></div>
+            </div>
+            <div class="muted" style="font-size:13px;margin-top:8px">Interactive demo: click to simulate partial decomposition</div>
+            <div style="margin-top:10px;display:flex;gap:8px">
+              <button class="tab" onclick="simulateDecay(7)">7d</button>
+              <button class="tab" onclick="simulateDecay(30)">30d</button>
+              <button class="tab" onclick="simulateDecay(60)">60d</button>
+              <button class="tab" onclick="simulateDecay(90)">90d</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card contact-card">
+          <div style="font-weight:700">Get involved 🤝</div>
+          <div class="muted">Collaborations • Pilots • School events</div>
+          <a href="tel:+917827074854">📱 +91 78270 74854</a>
+          <a href="mailto:tondakshriya@gmail.com">✉️ tondakshriya@gmail.com</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="content fade-in">
+      <div id="about" class="pane">
+        <div class="grid">
+          <div>
+            <h3>About Bioloom 🌿</h3>
+            <p>Bioloom began with a simple question: <em>what if disposable packaging could return to nature?</em> Drawing from food‑grade gelatin and thoughtful design, Bioloom performs like conventional plastic — strong, flexible and water resistant — but it naturally biodegrades in roughly 60–90 days under typical composting conditions. It’s food-safe, non-toxic and ideal for snacks, bakery wraps, and lightweight carry pouches.</p>
+
+            <h4>How the idea came</h4>
+            <p>Our team noticed the growing damage caused by single‑use plastics — blocked drains, polluted rivers, and harmed wildlife — and decided to create a practical, affordable, and truly biodegradable alternative. We prototyped, tested with student and household trials, and refined Bioloom to match the look and feel of plastic while ensuring safe decomposition.</p>
+
+            <h4>Uses</h4>
+            <ul>
+              <li>Food wraps (snacks, sandwiches, bakery items) 🍪</li>
+              <li>Disposable foodware for events and cafés ☕</li>
+              <li>Lightweight carry bags & pouches 🛍️</li>
+              <li>Retail and e‑commerce protective wraps 📦</li>
+            </ul>
+          </div>
+
+          <aside class="card">
+            <div style="font-weight:800">Why Bioloom?</div>
+            <div class="muted">Nature-first packaging that helps reduce plastic pollution without sacrificing utility.</div>
+            <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0" />
+            <div style="display:flex;gap:10px;flex-direction:column">
+              <div>✅ Decomposes in ~90 days</div>
+              <div>✅ Food-safe & non-toxic</div>
+              <div>✅ Comparable cost at scale</div>
+              <div>✅ Reduces regulatory risk for brands</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <div id="features" class="pane" style="display:none">
+        <h3>Features — Why choose Bioloom ✨</h3>
+        <div class="grid">
+          <div>
+            <div class="features-list">
+              <div class="feature"><strong>Made from gelatin</strong> — a natural, food-grade material that’s safe and renewable.</div>
+              <div class="feature"><strong>Rapid biodegradation</strong> — decomposes in about 60–90 days leaving no toxic residue.</div>
+              <div class="feature"><strong>Food safe</strong> — suitable for direct contact with snacks and bakery items.</div>
+              <div class="feature"><strong>Durable & water‑resistant</strong> — performs like conventional plastic for everyday use.</div>
+              <div class="feature"><strong>Cost competitive</strong> — production costs are comparable to plastic, and reduce hidden compliance costs.</div>
+            </div>
+
+            <h4 style="margin-top:14px">Why choose Bioloom?</h4>
+            <p>Choosing Bioloom helps your brand comply with sustainability policies, lowers long‑term environmental risk, and demonstrates leadership in eco‑design. It’s a practical solution for businesses and households that want to reduce plastic waste without changing user experience.</p>
+          </div>
+
+          <aside class="card">
+            <div style="font-weight:800">Quick facts</div>
+            <div class="muted">From prototype trials to pilot production, Bioloom is designed for real-world use.</div>
+            <ul style="margin-top:10px">
+              <li>Tested with student & household use</li>
+              <li>Strong enough for food packaging and light carry bags</li>
+              <li>Compatible with existing packing workflows</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+
+      <div id="demo" class="pane" style="display:none">
+        <h3>90 Days Demo ⏳</h3>
+        <div class="card">
+          <p class="muted">The full interactive 90‑day decomposition demonstration will be available soon. In the meantime, use the 'Biodegradation preview' control in the hero to simulate partial decay over 7, 30, 60 and 90 days.</p>
+          <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+            <div style="flex:1">
+              <div style="height:12px;background:rgba(255,255,255,0.02);border-radius:999px;overflow:hidden">
+                <div id="demoBar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--accent),#60a5fa);transition:width 1.2s ease"></div>
+              </div>
+              <div class="muted" style="font-size:13px;margin-top:8px">Demo placeholder — full live footage & time-lapse coming soon.</div>
+            </div>
+            <div style="width:120px;text-align:right;font-weight:700">Will be available soon 🚧</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="compare" class="pane" style="display:none">
+        <h3>Compare — Normal Plastic vs Bioloom 🔬</h3>
+        <div class="card">
+          <table>
+            <thead>
+              <tr><th>Feature</th><th>Normal Plastic</th><th>Bioloom</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Material</td><td>Petroleum-derived</td><td>Gelatin (natural)</td></tr>
+              <tr><td>Decomposition</td><td>100s of years; microplastics</td><td>~60–90 days; no toxic residue</td></tr>
+              <tr><td>Environmental impact</td><td>Pollutes land & water; harms wildlife</td><td>Biodegrades; reduces pollution</td></tr>
+              <tr><td>Food safety</td><td>Depends on type; may leach chemicals</td><td>Food-grade & non-toxic</td></tr>
+              <tr><td>Regulatory risk</td><td>High (EPR, bans)</td><td>Lower (compliant & biodegradable)</td></tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top:12px">
+            <p>By replacing single‑use plastic with Bioloom we reduce long‑term pollution, prevent microplastics from entering the food chain, and lessen pressure on waste disposal systems. Small changes at scale yield large environmental benefits — for example, replacing just 1% of single‑use plastic bags in a major city can prevent thousands of tonnes of waste annually.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="contact" class="pane" style="display:none">
+        <h3>Contact — Let’s collaborate 🤝</h3>
+        <div class="grid">
+          <div>
+            <div class="card">
+              <p style="margin:0 0 8px 0">We welcome collaborations with schools, small businesses, restaurants, and event organizers. To pilot Bioloom or discuss partnerships, reach out:</p>
+              <p style="margin:6px 0">📱 <a href="tel:+917827074854">+91 78270 74854</a></p>
+              <p style="margin:6px 0">✉️ <a href="mailto:tondakshriya@gmail.com">tondakshriya@gmail.com</a></p>
+              <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0" />
+              <p class="muted">Prefer a quick message? Use the form below and we'll get back to you.</p>
+              <form onsubmit="event.preventDefault(); alert('Thanks! We\'ll get back to you soon.');" style="margin-top:10px;display:flex;flex-direction:column;gap:8px">
+                <input required placeholder="Your name" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" />
+                <input required placeholder="Your email" type="email" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" />
+                <textarea required placeholder="Message" rows="4" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"></textarea>
+                <div style="display:flex;gap:8px">
+                  <button class="btn" type="submit">Send</button>
+                  <button class="tab" type="reset">Reset</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <aside class="card">
+            <div style="font-weight:800">Contact details</div>
+            <p class="muted">Phone</p>
+            <a href="tel:+917827074854">+91 78270 74854</a>
+            <p class="muted" style="margin-top:8px">Email</p>
+            <a href="mailto:tondakshriya@gmail.com">tondakshriya@gmail.com</a>
+            <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0" />
+            <div class="muted">We typically reply within 2–3 business days.</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="text-align:center;color:var(--muted)">
+    <div style="max-width:1100px;margin:0 auto;padding:18px">Made with 💚 by Team Bioloom — For your interschool launch</div>
+  </footer>
+
+  <script>
+    // Tab logic
+    function openTab(id){
+      document.querySelectorAll('nav .tab').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.pane').forEach(p=>p.style.display='none');
+      // mark nav
+      document.querySelectorAll('nav .tab').forEach(btn=>{ if(btn.textContent.toLowerCase().includes(id)) btn.classList.add('active') });
+      // fallback: try by id
+      const pane = document.getElementById(id);
+      if(pane) pane.style.display='block';
+      // scroll to main content area
+      window.scrollTo({top:120,behavior:'smooth'});
+    }
+
+    // set default
+    openTab('about');
+
+    // simulate decay bars
+    function simulateDecay(days){
+      const pct = Math.min(100, Math.round((days/90)*100));
+      document.getElementById('decayBar').style.width = pct + '%';
+      document.getElementById('demoBar').style.width = pct + '%';
+      // little toast
+      showToast('Simulated: '+days+' days → '+pct+'% decomposed');
+    }
+
+    function showToast(msg){
+      const t = document.createElement('div');
+      t.textContent = msg;
+      Object.assign(t.style, {position:'fixed',left:'50%',transform:'translateX(-50%)',bottom:'28px',background:'rgba(2,6,23,0.8)',padding:'10px 14px',borderRadius:'10px',boxShadow:'0 8px 30px rgba(2,6,23,0.6)',zIndex:999});
+      document.body.appendChild(t);
+      setTimeout(()=>t.style.opacity='0',2000);
+      setTimeout(()=>t.remove(),2600);
+    }
+  </script>
+</body>
+</html>
